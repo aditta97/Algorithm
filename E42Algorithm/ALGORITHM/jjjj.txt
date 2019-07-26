@@ -1,0 +1,57 @@
+#include <stdio.h>
+#define MAX 7
+int Array[MAX];
+void printline(int count) {
+   int i;
+
+   for(i = 0;i <count-1;i++) {
+      printf("=");
+   }
+   printf("=\n");
+}
+
+void display() {
+   int i;
+   printf("[");
+   for(i = 0;i<MAX;i++) {
+      printf("%5d ", Array[i]);
+   }
+   printf("]\n\n");
+}
+
+void selectionSort() {
+
+   int Min,i,j;
+   for(i = 0; i < MAX-1; i++) {
+      Min = i;
+      for(j = i+1;j<MAX;j++) {
+         if(Array[j] < Array[Min]) {
+            Min = j;
+         }
+      }
+
+      if(Min != i) {
+         printf("Items swapped: [ %d, %d ]\n" , Array[i], Array[Min]);
+         int temp = Array[Min];
+         Array[Min] = Array[i];
+         Array[i] = temp;
+      }
+      printf("\nIteration %d#:",(i+1));
+      display();
+   }
+}
+
+
+main() {
+   printf("Input Array: ");
+   for(int i=0;i<MAX;i++)
+   {
+    scanf("%d",&Array[i]);
+   }
+   display();
+   printline(50);
+   selectionSort();
+   printf("Output Array: ");
+   display();
+   printline(50);
+}
